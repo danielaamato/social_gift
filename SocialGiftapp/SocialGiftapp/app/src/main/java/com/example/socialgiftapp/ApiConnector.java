@@ -16,7 +16,7 @@ public class ApiConnector {
 
     private static ApiConnector instance;
     private RequestQueue requestQueue;
-    private String baseUrl = "https://balandrau.salle.url.edu/i3/socialgift/api/v1"; // Cambia esto por la URL base de la API que estés utilizando
+    private String baseUrl = "https://balandrau.salle.url.edu/i3/socialgift/api/v1";
     private String accessToken;
     private String baseImage = "https://balandrau.salle.url.edu/i3/repositoryimages/photo/47601a8b-dc7f-41a2-a53b-19d2e8f54cd0.png";
     ApiConnector(Context context) {
@@ -80,41 +80,49 @@ public class ApiConnector {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {;
-                            if (response.has("status")) {
-                                Object statusObj = response.get("status");
-                                if (statusObj instanceof Integer) {
-                                    int statusCode = (int) statusObj;
-                                    if (statusCode == 201) {
-                                        callback.onSuccess(response);
-                                    } else {
-                                        callback.onError(new VolleyError("Error: " + statusCode));
-                                    }
-                                } else {
-                                    callback.onError(new VolleyError("Error: Invalid status value"));
-                                }
-                            } else {
-                                callback.onError(new VolleyError("Error: Missing status value"));
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            callback.onError(new VolleyError("Error: Invalid response JSON"));
+                        // Si la respuesta contiene los campos esperados, asumimos que la operación fue exitosa
+                        if (response.has("name") && response.has("last_name") && response.has("email") && response.has("password") && response.has("image")) {
+                            callback.onSuccess(response);
+                        } else {
+                            callback.onError(new VolleyError("Error: Unexpected response JSON"));
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        callback.onError(error);
+                        if (error.networkResponse != null) {
+                            int statusCode = error.networkResponse.statusCode;
+
+                            // Puedes manejar diferentes códigos de error aquí, si es necesario
+                            switch (statusCode) {
+                                case 400:
+                                    callback.onError(new VolleyError("Error 400: Bad Request"));
+                                    break;
+                                case 406:
+                                    callback.onError(new VolleyError("Error 406: Missing parameters"));
+                                    break;
+                                case 409:
+                                    callback.onError(new VolleyError("Error 409: Email address already registered"));
+                                    break;
+                                case 500:
+                                    callback.onError(new VolleyError("Error 500: User not created"));
+                                    break;
+                                case 502:
+                                    callback.onError(new VolleyError("Error 502: Internal Server Error"));
+                                    break;
+                                default:
+                                    callback.onError(new VolleyError("Error: Unknown status code"));
+                                    break;
+                            }
+                        } else {
+                            callback.onError(new VolleyError("Error: No network response"));
+                        }
                     }
                 });
 
         requestQueue.add(jsonObjectRequest);
     }
-
-
-
-    // Agrega más funciones aquí para interactuar con otras partes de la API
 
     public interface ApiResponseCallback {
         void onSuccess(JSONObject response);

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         apiConnector = new ApiConnector(MainActivity.this);
+
         edtEmail = findViewById(R.id.edtSignInEmail);
         edtPassword = findViewById(R.id.edtSignInPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
