@@ -19,18 +19,22 @@ public class ApiConnector {
     private String baseUrl = "https://balandrau.salle.url.edu/i3/socialgift/api/v1";
     private String accessToken;
     private String baseImage = "https://balandrau.salle.url.edu/i3/repositoryimages/photo/47601a8b-dc7f-41a2-a53b-19d2e8f54cd0.png";
-    ApiConnector(Context context) {
+    ApiConnector(Context context)
+    {
         requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public static synchronized ApiConnector getInstance(Context context) {
-        if (instance == null) {
+    public static synchronized ApiConnector getInstance(Context context)
+    {
+        if (instance == null)
+        {
             instance = new ApiConnector(context);
         }
         return instance;
     }
 
-    public void setAccessToken(String accessToken) {
+    public void setAccessToken(String accessToken)
+    {
         this.accessToken = accessToken;
     }
 
@@ -38,21 +42,26 @@ public class ApiConnector {
         String url = baseUrl + "/users/login"; // Asegúrate de reemplazar esto con el endpoint correcto de tu API para iniciar sesión
 
         JSONObject jsonBody = new JSONObject();
-        try {
+        try
+        {
             jsonBody.put("email", email);
             jsonBody.put("password", password);
-        } catch (JSONException e) {
+        }
+        catch (JSONException e)
+        {
             e.printStackTrace();
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONObject>()
+                {
                     @Override
                     public void onResponse(JSONObject response) {
                         callback.onSuccess(response);
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
@@ -62,11 +71,13 @@ public class ApiConnector {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void register(String name, String lastName, String email, String password, final ApiResponseCallback callback) {
+    public void register(String name, String lastName, String email, String password, final ApiResponseCallback callback)
+    {
         String url = baseUrl + "/users";
 
         JSONObject jsonBody = new JSONObject();
-        try {
+        try
+        {
             jsonBody.put("name", name);
             jsonBody.put("last_name", lastName);
             jsonBody.put("email", email);
@@ -77,7 +88,8 @@ public class ApiConnector {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONObject>()
+                {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Si la respuesta contiene los campos esperados, asumimos que la operación fue exitosa
@@ -88,7 +100,8 @@ public class ApiConnector {
                         }
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener()
+                {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         if (error.networkResponse != null) {
@@ -124,7 +137,8 @@ public class ApiConnector {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public interface ApiResponseCallback {
+    public interface ApiResponseCallback
+    {
         void onSuccess(JSONObject response);
         void onError(VolleyError error);
     }

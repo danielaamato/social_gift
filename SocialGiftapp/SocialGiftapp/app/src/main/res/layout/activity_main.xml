@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6FD18F">
+    android:background="#6FD18F"
+    tools:ignore="ExtraText">
     android:scrollbars="none"
     tools:context=".MainActivity">
 
@@ -27,7 +28,8 @@
                 android:src="@drawable/logo_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:layout_width="50dp"
@@ -116,19 +118,19 @@
 
         </FrameLayout>
 
+        <Button
+            android:id="@+id/buttonForgot"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Forgot password?"
+            android:backgroundTint="@color/black"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Don't Have an Account ?"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/txtSignUp"

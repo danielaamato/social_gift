@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6FD18F">
+    android:background="#6FD18F"
+    tools:ignore="ExtraText">
     android:scrollbars="none"
     tools:context=".SignUpActivity">
 

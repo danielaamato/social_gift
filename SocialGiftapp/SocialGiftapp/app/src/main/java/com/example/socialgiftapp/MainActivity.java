@@ -2,6 +2,7 @@ package com.example.socialgiftapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,9 +18,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtSignUp;
     private ApiConnector apiConnector;
     private Button btnSignIn;
+    private Button btnForgotPass;
     private EditText edtEmail;
     private EditText edtPassword;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtSignInEmail);
         edtPassword = findViewById(R.id.edtSignInPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
+        btnForgotPass = findViewById(R.id.buttonForgot);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +64,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        txtSignUp = findViewById(R.id.txtSignUp);
-        txtSignUp.setOnClickListener(new View.OnClickListener() {
+        btnForgotPass.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        txtSignUp = findViewById(R.id.txtSignUp);
+        txtSignUp.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
