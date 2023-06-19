@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.android.material.textfield.TextInputEditText;
@@ -11,7 +12,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SignUpActivity extends AppCompatActivity {
+public class   SignUpActivity extends AppCompatActivity {
     private TextInputEditText edtFirstName;
     private TextInputEditText edtLastName;
     private TextInputEditText edtSignUpEmail;
@@ -52,8 +53,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                             User user = new User(1, name, last_name, email, imageUrl);
 
-
-                            System.out.println("REGISTERED!");
+                            Toast.makeText(SignUpActivity.this,R.string.registered_message,Toast.LENGTH_SHORT).show();
+                            //System.out.println("REGISTERED!");REGISTERED registered_message
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -61,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(VolleyError error) {
-                        System.out.println("PROBLEM WITH THE USER!");
+                        System.out.println("PROBLEM WITH THE USER!"); //hacer toast
                         error.printStackTrace();
                     }
                 });

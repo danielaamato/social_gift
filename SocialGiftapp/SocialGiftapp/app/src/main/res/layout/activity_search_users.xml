@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
+
         android:id="@+id/title_search_users"
         android:layout_width="411dp"
         android:layout_height="90dp"
@@ -37,7 +38,7 @@
 
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSearchUser"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:backgroundTint="@color/black"

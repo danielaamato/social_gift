@@ -9,8 +9,9 @@
     <string name="write_user_button">Write</string>
     <string name="decline_text">Decline</string>
     <string name="accept_text">Accept</string>
-
-
+    <string name="registered_message">REGISTERED</string>
+    <string name="message_api_error">Error accessing to Api</string>
+    <string name="message_email_empty">Please introduce a email</string>
 
 
 </resources>
