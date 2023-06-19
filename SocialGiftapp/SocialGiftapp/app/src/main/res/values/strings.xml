@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SocialGiftapp</string>
+    <string name="search_users_title">Search User</string>
+    <string name="step_email_search">Introduce the email of the user you want to search</string>
+    <string name="search_user_button">Search</string>
+    <string name="list_user_name"> User 1</string>
+    <string name="name_friend_text">Friend names</string>
+    <string name="request_friend_text">Friend requests</string>
+    <string name="write_user_button">Write</string>
+    <string name="decline_text">Decline</string>
+    <string name="accept_text">Accept</string>
+
+
+
+
 </resources>

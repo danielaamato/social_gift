@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+
+        android:id="@+id/image_user"
+        android:layout_width="100dp"
+
+        android:layout_height="100dp"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:layout_weight="6">
+
+        <TextView
+            android:id="@+id/name_text_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/name_background"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/list_user_name"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/accept_button"
+            android:layout_width="100dp"
+            android:layout_height="58dp"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:text="@string/accept_text"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/decline_button"
+            android:layout_width="100dp"
+            android:layout_height="58dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:text="@string/decline_text"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
