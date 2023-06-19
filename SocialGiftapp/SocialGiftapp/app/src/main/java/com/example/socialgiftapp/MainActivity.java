@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnForgotPass;
     private EditText edtEmail;
     private EditText edtPassword;
+    private static final int SIGNUP = 0;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,16 +62,6 @@ public class MainActivity extends AppCompatActivity {
                         error.printStackTrace();
                     }
                 });
-            }
-        });
-
-        btnForgotPass.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, ForgotPasswordActivity.class);
-                startActivity(intent);
             }
         });
 

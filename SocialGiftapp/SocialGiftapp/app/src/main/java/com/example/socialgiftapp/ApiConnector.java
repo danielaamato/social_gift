@@ -16,7 +16,7 @@ public class ApiConnector {
 
     private static ApiConnector instance;
     private RequestQueue requestQueue;
-    private String baseUrl = "https://balandrau.salle.url.edu/i3/socialgift/api/v1";
+    private String baseUrl = "https://balandrau.salle.url.edu/i3/socialgift/api/v1/";
     private String accessToken;
     private String baseImage = "https://balandrau.salle.url.edu/i3/repositoryimages/photo/47601a8b-dc7f-41a2-a53b-19d2e8f54cd0.png";
     ApiConnector(Context context)
@@ -38,8 +38,78 @@ public class ApiConnector {
         this.accessToken = accessToken;
     }
 
+    public void update(String name, String lastname, String mail, String password, final ApiResponseCallback callback)
+    {
+        String url = baseUrl + "/users";
+
+        JSONObject jsonObject = new JSONObject();
+
+        try
+        {
+            jsonObject.put("name", name);
+            jsonObject.put("last_name", lastname);
+            jsonObject.put("email", mail);
+            jsonObject.put("password", password);
+            jsonObject.put("image", baseImage);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response.has("name") && response.has("last_name") && response.has("email") && response.has("password") && response.has("image")) {
+                    callback.onSuccess(response);
+                } else {
+                    callback.onError(new VolleyError("Error: Unexpected response JSON"));
+                }
+            }
+        },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        if (error.networkResponse != null)
+                        {
+                            int statusCode = error.networkResponse.statusCode;
+
+                            switch (statusCode)
+                            {
+                                case 400:
+                                    callback.onError(new VolleyError("Error 400: Bad Request"));
+                                    break;
+                                case 406:
+                                    callback.onError(new VolleyError("Error 406: Missing parameters"));
+                                    break;
+                                case 409:
+                                    callback.onError(new VolleyError("Error 409: Email address already registered"));
+                                    break;
+                                case 500:
+                                    callback.onError(new VolleyError("Error 500: User not created"));
+                                    break;
+                                case 502:
+                                    callback.onError(new VolleyError("Error 502: Internal Server Error"));
+                                    break;
+                                default:
+                                    callback.onError(new VolleyError("Error: Unknown status code"));
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            callback.onError(new VolleyError("Error: No network response"));
+                        }
+                    }
+                });
+
+        requestQueue.add(jsonObjectRequest);
+    }
+
     public void login(String email, String password, final ApiResponseCallback callback) {
-        String url = baseUrl + "/users/login"; // Asegúrate de reemplazar esto con el endpoint correcto de tu API para iniciar sesión
+        String url = baseUrl + "users/login"; // Asegúrate de reemplazar esto con el endpoint correcto de tu API para iniciar sesión
 
         JSONObject jsonBody = new JSONObject();
         try
