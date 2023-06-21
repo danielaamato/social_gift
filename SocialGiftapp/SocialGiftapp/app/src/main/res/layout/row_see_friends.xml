@@ -5,11 +5,11 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <Button
-        android:id="@+id/btnWriteToFriend"
+        android:id="@+id/buttonRowChatFriend"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="255dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_user"
+        android:id="@+id/name_user_view"
         android:layout_width="105dp"
         android:layout_height="70dp"
         android:layout_marginStart="45dp"
@@ -47,11 +47,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image_friend"
+        android:id="@+id/image_friend_see_friend"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/name_user"
+        app:layout_constraintEnd_toStartOf="@+id/name_user_view"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="2dp"
         app:layout_constraintStart_toStartOf="parent"

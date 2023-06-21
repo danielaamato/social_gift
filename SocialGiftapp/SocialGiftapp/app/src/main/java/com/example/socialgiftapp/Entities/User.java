@@ -1,4 +1,4 @@
-package com.example.socialgiftapp;
+package com.example.socialgiftapp.Entities;
 
 public class User {
     private Integer id;

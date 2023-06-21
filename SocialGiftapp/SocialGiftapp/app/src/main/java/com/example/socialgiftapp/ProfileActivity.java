@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.socialgiftapp.Entities.User;
 
 public class ProfileActivity extends AppCompatActivity
 {
