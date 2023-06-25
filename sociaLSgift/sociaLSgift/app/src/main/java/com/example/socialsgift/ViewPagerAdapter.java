@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import Fragments.GiftFragment;
+import Fragments.SocialFragment;
 import Fragments.MenuFragment;
 import Fragments.ProfileFragment;
 import Fragments.WishlistFragment;
@@ -30,7 +30,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter
                 return MenuFragment.newInstance(accessToken);
             case 1:
                 // Crea y devuelve una instancia de GiftFragment (puedes pasar accessToken si también lo necesita)
-                return new GiftFragment();
+                return new SocialFragment();
             case 2:
                 // Crea y devuelve una instancia de WishlistFragment (puedes pasar accessToken si también lo necesita)
                 return new WishlistFragment();

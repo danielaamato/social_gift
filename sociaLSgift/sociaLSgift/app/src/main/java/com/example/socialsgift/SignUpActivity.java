@@ -66,8 +66,10 @@ public class SignUpActivity extends AppCompatActivity
                     ApiConnector apiConnector = ApiConnector.getInstance(SignUpActivity.this);
                     apiConnector.register(firstName, lastName, email, password, new ApiConnector.ApiResponseCallback() {
                         @Override
-                        public void onSuccess(JSONObject response) {
-                            try {
+                        public void onSuccess(JSONObject response)
+                        {
+                            try
+                            {
                                 //int id = response.getInt("id");
                                 String name = response.getString("name");
                                 String last_name = response.getString("last_name");
@@ -78,7 +80,9 @@ public class SignUpActivity extends AppCompatActivity
 
                                 Toast.makeText(SignUpActivity.this, "User Registered Successfully!", Toast.LENGTH_SHORT).show();
                                 finish();
-                            } catch (JSONException e) {
+                            }
+                            catch (JSONException e)
+                            {
                                 e.printStackTrace();
                             }
                         }

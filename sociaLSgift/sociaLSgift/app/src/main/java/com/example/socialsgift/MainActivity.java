@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                     tab.setText("Menu");
                     break;
                 case 1:
-                    tab.setText("Regalos");
+                    tab.setText("Social");
                     break;
                 case 2:
                     tab.setText("Listas");
